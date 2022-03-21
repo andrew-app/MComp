@@ -4,14 +4,13 @@ import java.util.Scanner;
 class ousb {
     public static void main(String[] args) throws IOException {
         String os = System.getProperty("os.name");
-        System.out.println("Running on: " + os);
         
         Scanner cmdarg = new Scanner(System.in);
 
         String pipecmd = null;
         String base = null;
 
-        String help = "Available Options: \n [0]: Exit the program \n [1]: Display the HELP menu \n [2]: Read the switches (PINC) \n [3]: Read the trim pot (ADC5). \n [4]: Write value to the LEDs (PORTB). \n [5]: Read the LEDs (PORTB).";
+        String help = "Available Options: \n [0]: Exit the program \n [1]: Display the HELP menu \n [2]: Read the switches (PINC) \n [3]: Read the trim pot (ADC5). \n [4]: Write value to the LEDs (PORTB). \n [5]: Read the LEDs (PORTB). \n [6]: Enter the temperature sensor mode.";
         if (os.equals("Linux")){
             base = "sudo ousb";
         }
@@ -19,6 +18,7 @@ class ousb {
         else {
             base = "ousb.exe";
         }
+
 
         while(true){
             System.out.println("Select an option:");
@@ -81,6 +81,10 @@ class ousb {
                 case "5":
                     pipecmd = base + " io portb";
                     pipe(pipecmd);
+                    break;
+                
+                case "6":
+                    tempsense.main(null);
                     break;
                 
                 default:

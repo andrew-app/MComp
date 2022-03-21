@@ -6,22 +6,20 @@ class tempsense{
     public static void main(String[] args) throws IOException {
 
         String os = System.getProperty("os.name");
-        System.out.println("Running on: " + os);
-        String readadc = null;
+        String adc = null;
         String portb = null;
-
-        if(os.equals("Linux")){
-            readadc = "sudo ousb -r adc 5";
-            portb = "sudo ousb io portb ";
-        }
-
-        String trimpot = pipe(readadc);
         float x;
         double T;
         float A = 140;
         float B = -100;
         float C = -20;
 
+        if(os.equals("Linux")){
+            adc = "sudo ousb -r adc 5";
+            portb = "sudo ousb io portb ";
+        }
+
+        String trimpot = readtrimpot(adc);
 
         try {
             x = Float.parseFloat(trimpot);
@@ -65,10 +63,6 @@ class tempsense{
         }
 
         writeportb(portb + "0");
-
-
-
-
     }
 
     public static void writeportb(String ousbcmd) throws IOException {
@@ -84,7 +78,7 @@ class tempsense{
         }
     }
 
-    public static String pipe(String ousbcmd) throws IOException {
+    public static String readtrimpot(String ousbcmd) throws IOException {
         String retval = null;
         try {
             Runtime run = Runtime.getRuntime(); // get runtime shell.
