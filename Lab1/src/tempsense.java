@@ -40,8 +40,8 @@ class tempsense{
 
         System.out.println(T + " DEG C");
 
-        String[] LTR = {"1","2","4","16","32","64","128"};
-        String[] RTL = {"128","64","32","16","4","2","1"};
+        String[] LTR = {"1","2","4","16","32","64","128"}; //LED flash left to right bits
+        String[] RTL = {"128","64","32","16","4","2","1"}; //LED flash right to left bits
         String[] sflash = null;
 
         if(T < 30){
