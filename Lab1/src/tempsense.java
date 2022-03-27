@@ -19,6 +19,11 @@ class tempsense{
             portb = "sudo ousb io portb ";
         }
 
+        else {
+            adc = "ousb.exe -r adc 5";
+            portb = "ousb.exe io portb ";
+        }
+
         String trimpot = readtrimpot(adc);
 
         try {

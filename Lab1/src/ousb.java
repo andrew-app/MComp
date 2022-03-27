@@ -23,23 +23,23 @@ class ousb {
         while(true){
             System.out.println("Select an option:");
 
-            String option = cmdarg.nextLine();
+            String cmd = cmdarg.nextLine();
 
             String portbval = null;
 
-            if (option.length() > 2){
-
-                portbval = option.substring(2, option.length());
-
+            if (cmd.isEmpty()){
+                System.out.println("Invalid command argument.");
+                System.out.println("Available Commands: " + help);
+                break;
             }
 
-            else{
-                portbval = "empty";
+            String option = cmd.substring(0, 1);
+
+            if (option != "4" & cmd.length() > 1){
+                System.out.println("Invalid command argument.");
+                System.out.println("Available Commands: " + help);
+                break;
             }
-
-            String cmd = option.substring(0, 1);
-
-             
 
             switch(cmd){
 
@@ -64,17 +64,19 @@ class ousb {
 
                 case "4":
 
-                    if(portbval.equals("empty")){
+                    if(option.length() == 1){
+                        System.out.println("Unable to write to PORTB. No 2nd command argument given.");
+                        break;
+                    }
+
+
+                    if(!isNumeric(cmd.substring(2,cmd.length()))){
                         System.out.println("2nd command argument invalid.");
                         break;
                     }
 
-                    if(isNumeric(portbval) == false){
-                        System.out.println("2nd command argument invalid number");
-                        break;
-                    }
-
-                    pipecmd = base + " io portb " + portbval;
+                    
+                    pipecmd = base + " io portb " + cmd.substring(2,cmd.length());
                     pipe(pipecmd);
                     break;
                 

@@ -1,3 +1,4 @@
 *.class
 .vscode
-ousb/submission
+Submissions
+*.jar
