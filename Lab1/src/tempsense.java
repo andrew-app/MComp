@@ -8,8 +8,8 @@ class tempsense{
         String os = System.getProperty("os.name");
         String adc = null;
         String portb = null;
-        float x;
-        double T;
+        float x = 0;
+        double T = 0;
         float A = 140;
         float B = -100;
         float C = -20;
@@ -70,12 +70,16 @@ class tempsense{
         writeportb(portb + "0");
     }
 
+
     public static void writeportb(String ousbcmd) throws IOException {
         try {
             Runtime run = Runtime.getRuntime(); // get runtime shell.
             Process pr = run.exec(ousbcmd);         // start command.
             pr.waitFor();                       // wait for command to finish.
             Scanner scanner = new Scanner(pr.getInputStream());
+            if (scanner.nextLine().contains("Fatal Exception!")){
+                System.out.println("Error!!! Check OUSB connection.");
+            }
             scanner.close();
         }
         catch (Exception e ) {
@@ -92,6 +96,10 @@ class tempsense{
             Scanner scanner = new Scanner(pr.getInputStream());
             while (scanner.hasNextLine())
             {
+                if (scanner.nextLine().contains("Fatal Exception!")){
+                    System.out.println("Error!!! Check OUSB connection.");
+                    break;
+                }
                 retval = scanner.nextLine();
             }
             scanner.close();
