@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">lab2</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Task 1</string>
+    <string name="second_fragment_label">Task 2</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="my_name">Andrew Appuhamy</string>
+    <string name="course">EEET 2422: Mobile Computing</string>
+    <string name="ID">s3680442</string>
+    <string name="echo">echo</string>
+    <string name="echo_text">Hello from Mobile Computing</string>
+</resources>
